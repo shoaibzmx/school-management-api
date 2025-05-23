@@ -7,7 +7,9 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT || 5432,
-  ssl: true, // Important for Render PostgreSQL
+  ssl: {
+    rejectUnauthorized: false  
+  }
 });
 
 // Create table if it doesn't exist
@@ -22,7 +24,7 @@ const createTableQuery = `
 `;
 
 pool.query(createTableQuery)
-  .then(() => console.log('✅ Table "schools" is ready'))
+  .then(() => console.log(' Table "schools" is ready'))
   .catch((err) => console.error('❌ Error creating table:', err));
 
 module.exports = pool;
