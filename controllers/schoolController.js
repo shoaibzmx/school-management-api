@@ -44,6 +44,6 @@ exports.listSchools =async(req,res)=>{
        res.json(sorted);
         }
      catch (error) {
-         res.status(500).json({ error:'Database error',detail:err});
+         res.status(500).json({ error:'Database error',detail:error});
     };
 }
